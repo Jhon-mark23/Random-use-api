@@ -19,10 +19,10 @@ fs.access(quotesFilePath)
   });
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the Quote API!');
+  res.send('Welcome to the random API! \n Mark');
 });
 
-app.get('/hugot', async (req, res) => {
+app.get('/random', async (req, res) => {
   try {
     // Read the quotes from the JSON file
     const data = await fs.readFile(quotesFilePath, 'utf8');
@@ -39,7 +39,7 @@ app.get('/hugot', async (req, res) => {
   }
 });
 
-app.post('/hugot', async (req, res) => {
+app.post('/random', async (req, res) => {
   try {
     // Extract the quote and author from the request body
     const { quote, author } = req.body;
