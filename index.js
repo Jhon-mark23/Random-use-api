@@ -61,7 +61,7 @@ app.post('/shoti', async (req, res) => {
     res.json(newQuote);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to add the quote.' });
+    res.status(500).json({ error: 'Erorr to fetch data.' });
   }
 });
 
