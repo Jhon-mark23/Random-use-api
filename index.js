@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.use(cors());
 
-const quotesFilePath = path.join(__dirname, 'maq.json');
+const quotesFilePath = path.join(__dirname, 'shoti.json');
 
 // Create an empty quotes array if the file doesn't exist
 fs.access(quotesFilePath)
@@ -19,10 +19,10 @@ fs.access(quotesFilePath)
   });
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the random API! \n Mark');
+  res.send('Welcome to the shoti API! \n owner:Mark \n type /shoti to get video');
 });
 
-app.get('/random', async (req, res) => {
+app.get('/shoti', async (req, res) => {
   try {
     // Read the quotes from the JSON file
     const data = await fs.readFile(quotesFilePath, 'utf8');
@@ -39,17 +39,17 @@ app.get('/random', async (req, res) => {
   }
 });
 
-app.post('/random', async (req, res) => {
+app.post('/shoti', async (req, res) => {
   try {
     // Extract the quote and author from the request body
-    const { quote, author } = req.body;
+    const { name, description, url } = req.body;
 
     // Read the existing quotes from the JSON file
     const data = await fs.readFile(quotesFilePath, 'utf8');
     const quotes = JSON.parse(data);
 
     // Create a new quote object
-    const newQuote = { quote, author };
+    const newQuote = { name, description, url };
 
     // Add the new quote to the quotes array
     quotes.push(newQuote);
