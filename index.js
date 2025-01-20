@@ -19,7 +19,7 @@ fs.access(quotesFilePath)
   });
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the shoti API! \n Mark type /shoti');
+  res.send('Welcome to the shoti API! \n owner:Mark \n type /shoti to get video');
 });
 
 app.get('/shoti', async (req, res) => {
@@ -42,14 +42,14 @@ app.get('/shoti', async (req, res) => {
 app.post('/shoti', async (req, res) => {
   try {
     // Extract the quote and author from the request body
-    const { shoti } = req.body;
+    const { name, description, url } = req.body;
 
     // Read the existing quotes from the JSON file
     const data = await fs.readFile(quotesFilePath, 'utf8');
     const quotes = JSON.parse(data);
 
     // Create a new quote object
-    const newQuote = { shoti };
+    const newQuote = { name, description, url };
 
     // Add the new quote to the quotes array
     quotes.push(newQuote);
@@ -61,7 +61,7 @@ app.post('/shoti', async (req, res) => {
     res.json(newQuote);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to add the quote.' });
+    res.status(500).json({ error: 'Erorr to fetch data.' });
   }
 });
 
