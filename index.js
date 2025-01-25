@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
   res.send('Welcome to the shoti API! \n owner:Mark \n type /shoti to get video');
 });
 
+app.get("/video", async function (req, res) {
+res.sendFile(path.join(__dirname, "./video.html"));
+});
+
 app.get('/shoti', async (req, res) => {
   try {
     // Read the quotes from the JSON file
@@ -49,12 +53,7 @@ app.post('/shoti', async (req, res) => {
     const quotes = JSON.parse(data);
 
     // Create a new quote object
-    const newQuote = {
-      status: true,
-      name, 
-      description,
-      url
-         };
+    const newQuote = { name, description, url };
 
     // Add the new quote to the quotes array
     quotes.push(newQuote);
