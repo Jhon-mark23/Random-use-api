@@ -49,7 +49,12 @@ app.post('/shoti', async (req, res) => {
     const quotes = JSON.parse(data);
 
     // Create a new quote object
-    const newQuote = { name, description, url };
+    const newQuote = {
+      status: true,
+      name, 
+      description,
+      url
+         };
 
     // Add the new quote to the quotes array
     quotes.push(newQuote);
