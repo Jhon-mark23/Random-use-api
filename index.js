@@ -18,11 +18,9 @@ fs.access(quotesFilePath)
     process.exit(1);
   });
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the shoti API! \n owner:Mark \n type /shoti to get video');
-});
 
-app.get("/video", async function (req, res) {
+
+app.get("/", async function (req, res) {
 res.sendFile(path.join(__dirname, "./video.html"));
 });
 
